@@ -2,5 +2,11 @@
   "name": "VideoNotes browser extension",
   "description": "It renders dynamic contents over a video that is playing.",
   "version": "0.0.0",
-  "manifest_version": 3
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
 }
