@@ -1,4 +1,6 @@
-export default class DefaultRender {
+export class DefaultRender {
   constructor(options) {}
-  renderNote() {}
+  renderNote(note) {
+    console.log(note);
+  }
 }

@@ -20,7 +20,8 @@
       "resources": [
         "notes/*.vtt",
         "notes/*.json",
-        "utils/*.js"
+        "utils/*.js",
+        "renderers/*.js"
       ],
       "matches": ["https://*/*"]
     }

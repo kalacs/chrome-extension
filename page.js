@@ -1,4 +1,10 @@
+let createNoteRenderer;
 const DELAY = 0;
+
+(async () => {
+  const module = await import(chrome.runtime.getURL("renderers/index.js"));
+  createNoteRenderer = module.createNoteRenderer;
+})();
 
 chrome.runtime.onMessage.addListener(function ({ type }) {
   if (type === "LOAD_NOTE") {
@@ -14,6 +20,11 @@ chrome.runtime.onMessage.addListener(function ({ type }) {
       track.mode = "showing";
       track.addEventListener("cuechange", () => {
         const cue = track.activeCues[0];
+
+        if (!cue) {
+          return false;
+        }
+
         const note = JSON.parse(cue.text);
         // render notes
         const rendererOptions = {

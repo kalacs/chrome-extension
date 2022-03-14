@@ -1,9 +1,19 @@
 let DefaultRender;
 
 (async () => {
-  DefaultRender = await import(
+  const module = await import(
     chrome.runtime.getURL("renderers/DefaultRender.js")
   );
+  DefaultRender = module.DefaultRender;
 })();
 
-export default function createRenderer() {}
+export function createNoteRenderer({ type }) {
+  let renderer;
+  switch (type) {
+    case "default":
+    default:
+      renderer = new DefaultRender();
+      break;
+  }
+  return renderer;
+}
